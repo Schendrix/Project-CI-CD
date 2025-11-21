@@ -23,6 +23,7 @@ pipeline {
                 zip -r ${ARTIFACT_NAME} . -x "*.git*" "Jenkinsfile"
                 '''
             }
+        }
         stage('Archive Artifact') {
             steps {
                 // Store the artifact in Jenkins
