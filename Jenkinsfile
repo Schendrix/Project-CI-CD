@@ -18,22 +18,41 @@ pipeline {
                 echo "Variable 1 is ${VAR1}"
             }
         }
-        stage('Build2') {
-            steps {
-                sh './gradlew build'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh './gradlew check'
-            }
-        }
+        // stage('Build2') {
+        //     steps {
+        //         sh './gradlew build'
+        //     }
+        // }
+        // stage('Test') {
+        //     steps {
+        //         sh './gradlew check'
+        //     }
+        // }
     }
 
     post {
+        // always {
+        //     archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+        //     junit 'build/reports/**/*.xml'
+        // }
         always {
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
+            mail to: 'andreisendrea21@gmail.com',
+                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                body: "Something is wrong with ${env.BUILD_URL}"
+            echo 'One way or another, I have finished'
+            deleteDir() /* clean up our workspace */
+        }
+        success {
+            echo 'I succeeded!'
+        }
+        unstable {
+            echo 'I am unstable :/'
+        }
+        failure {
+            echo 'I failed :('
+        }
+        changed {
+            echo 'Things were different before...'
         }
     }
 }
