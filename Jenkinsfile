@@ -64,14 +64,14 @@ pipeline {
             echo "Artifact created successfully: ${ARTIFACT_NAME}"
             echo 'I succeeded!'
         }
-        unstable {
-            echo 'I am unstable :/'
-        }
-        failure {
-            echo 'I failed :('
-        }
-        changed {
-            echo 'Things were different before...'
-        }
+        // unstable {
+        //     echo 'I am unstable :/'
+        // }
+        // failure {
+        //     echo 'I failed :('
+        // }
+        // changed {
+        //     echo 'Things were different before...'
+        // }
     }
 }
