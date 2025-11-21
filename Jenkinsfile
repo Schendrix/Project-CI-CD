@@ -36,16 +36,6 @@ pipeline {
                 echo "Variable 1 is ${VAR1}"
             }
         }
-        // stage('Build2') {
-        //     steps {
-        //         sh './gradlew build'
-        //     }
-        // }
-        // stage('Test') {
-        //     steps {
-        //         sh './gradlew check'
-        //     }
-        // }
     }
 
     post {
