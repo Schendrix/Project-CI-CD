@@ -63,6 +63,7 @@ pipeline {
         success {
             echo "Artifact created successfully: ${ARTIFACT_NAME}"
             echo 'I succeeded!'
+            echo 'Added for webhook'
         }
         // unstable {
         //     echo 'I am unstable :/'
