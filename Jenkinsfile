@@ -18,13 +18,7 @@ pipeline {
                 echo "Variable 1 is ${VAR1}"
             }
         }
-    }
-}
-
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
+        stage('Build2') {
             steps {
                 sh './gradlew build'
             }
