@@ -5,6 +5,7 @@ pipeline {
         CONTROL = 'true'
         VAR1 = 'var1'
         ARTIFACT_NAME = "my-project.zip"
+        ARTIFACT_NAME2 = "my-project.zip"
     }
     stages {
         stage('initialize') {
