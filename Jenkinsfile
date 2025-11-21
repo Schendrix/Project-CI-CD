@@ -11,10 +11,6 @@ pipeline {
                 sh 'sudo apt-get install -y python3'
                 echo "Control var is ${CONTROL}"
             }
-            steps {
-                // Pull latest code
-                checkout scm
-            }
         }
         stage('Build/Package') {
             steps {
