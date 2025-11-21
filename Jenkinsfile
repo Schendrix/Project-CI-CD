@@ -11,6 +11,23 @@ pipeline {
                 sh 'sudo apt-get install -y python3'
                 echo "Control var is ${CONTROL}"
             }
+            steps {
+                // Pull latest code
+                checkout scm
+            }
+        }
+        stage('Build/Package') {
+            steps {
+                // Package your project into a ZIP (excluding .git and Jenkins files)
+                sh '''
+                zip -r ${ARTIFACT_NAME} . -x "*.git*" "Jenkinsfile"
+                '''
+            }
+        stage('Archive Artifact') {
+            steps {
+                // Store the artifact in Jenkins
+                archiveArtifacts artifacts: "${ARTIFACT_NAME}", fingerprint: true
+            }
         }
         stage('build') {
             steps {
@@ -38,11 +55,12 @@ pipeline {
         always {
             mail to: 'andreisendrea21@gmail.com',
                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Something is wrong with ${env.BUILD_URL}"
+                body: "Something is wrong with ${env.BUILD_URL} and ${ARTIFACT_NAME}"
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
         }
         success {
+            echo "Artifact created successfully: ${ARTIFACT_NAME}"
             echo 'I succeeded!'
         }
         unstable {
