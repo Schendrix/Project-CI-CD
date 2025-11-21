@@ -19,7 +19,7 @@ pipeline {
                 // Package your project into a ZIP (excluding .git and Jenkins files)
                 sh 'ls -la'
                 sh '''
-                zip -r ${ARTIFACT_NAME} . -x "*.git/*" "Jenkinsfile"
+                zip -r ${ARTIFACT_NAME} .
                 '''
             }
         }
