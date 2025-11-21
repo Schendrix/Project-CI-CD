@@ -1,7 +1,12 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'python:3.14.0-alpine3.22' } }
+    agent any
     stages {
+        stage('initialize') {
+            steps {
+                sh 'sudo apt-get install -y python3'
+            }
+        }
         stage('build') {
             steps {
                 sh 'python --version'
