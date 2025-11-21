@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('initialize') {
             steps {
-                sh 'sudo apt-get install -y python3'
+                sh 'sudo apt-get install -y python'
             }
         }
         stage('build') {
