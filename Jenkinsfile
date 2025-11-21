@@ -4,6 +4,7 @@ pipeline {
     environment {
         CONTROL = 'true'
         VAR1 = 'var1'
+        ARTIFACT_NAME = "my-project.zip"
     }
     stages {
         stage('initialize') {
